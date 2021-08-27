@@ -40,7 +40,7 @@ fn process_parallel(vector: Vec<i32>) {
 
 	let mut result_vec_parallel = vec![0; vector.len()];
 	let (tx, rx) = channel();
-    for i in 0..vector.len() {
+	for i in 0..vector.len() {
 		let tx = tx.clone();
 		let e = vector[i];
 
