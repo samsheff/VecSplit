@@ -1,6 +1,11 @@
 use threadpool::ThreadPool;
 use std::sync::mpsc::channel;
 
+// Used for verifying that the order is saved. Not needed in final result
+// Left in to show the development process
+// See Below
+//use std::{thread, time};
+
 fn main() {
 	// Start with small vector below threshold
 	let vector = vec![1, 2, 3];
@@ -46,6 +51,13 @@ fn process_parallel(vector: Vec<i32>) {
 
 		pool.execute(move|| {
 			let result_element = process_vec(e);
+
+			// Used for verifying that the order is saved. Not needed in final result.
+			// Left in to show the development process
+			//let millis = time::Duration::from_millis(e as u64 * 1000);
+			//let now = time::Instant::now();
+			//thread::sleep(millis);
+
 			tx.send(vec![result_element, i as i32]).unwrap();
 		});
 	}
